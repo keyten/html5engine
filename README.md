@@ -6,11 +6,11 @@ Add this code for your html page:
 
     <script src="html5engine.js"></script>
     <script>
-      h5e.setup('canv', 'helloworld.js');
+      h5e.start('canv', 'helloworld.js');
     </script>
     <canvas id="canv"></canvas>
     
-## test.js
+## helloworld.js
 
     ctx.fillText('Hello, world!', 10, 10);
   
