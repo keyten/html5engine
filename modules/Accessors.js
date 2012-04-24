@@ -10,12 +10,12 @@
 	self.Accessors = {};
 	self.Accessors.support = Object.getOwnPropertyDescriptor ? 'standart' : {}.__defineGetter__ ? 'no-standart' : 'no-support';
 	self.Accessors.lookup =
-		(self.Accessors.type == 'non-standart' ? 
+		(self.Accessors.support == 'non-standart' ? 
 			function(from, key){
 				return { get:from.__lookupGetter__(key), set:from.__lookupSetter__(key) };
 			}
 				:
-		self.Accessors.type == 'standart' ?
+		self.Accessors.support == 'standart' ?
 			function(from, key,    descriptor){
 				descriptor = Object.getOwnPropertyDescriptor(from, key);
 				if(!descriptor){
@@ -31,7 +31,7 @@
 			null
 		);
 	self.Accessors.define =
-		(self.Accessors.type == 'non-standart' ?
+		(self.Accessors.support == 'non-standart' ?
 			function(obj, prop, desc){
 				if(desc){
 					if(desc.get) obj.__defineGetter__(prop, desc.get);
@@ -40,7 +40,7 @@
 				return obj;
 			}
 				:
-		self.Accessors.type == 'standart' ?
+		self.Accessors.support == 'standart' ?
 			function(obj, prop, desc){
 				if(desc){
 					Object.defineProperty(obj, prop, {
