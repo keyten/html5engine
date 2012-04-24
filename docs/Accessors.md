@@ -6,18 +6,18 @@ Receives and returns a getter and setter functions, if they are defined.
 
     var obj = {
       _abc:0,
-      get abc(v){
+      get abc(){
         return this._abc;
       },
-      set abc(){
+      set abc(v){
         ++this._abc;
       }
     };
     
     Accessors.lookup(obj, 'abc');
-    /* => { get:function(v){
+    /* => { get:function(){
       return this._abc;
-    }, set:function(){
+    }, set:function(v){
       ++this._abc;
     } } */
 
@@ -27,8 +27,8 @@ Defines getter & setter.
     var obj = { _abc:0 };
     
     Accessors.define(obj, 'abc', {
-      get:function(v){ return this._abc },
-      set:function(){ ++this._abc }
+      get:function(){ return this._abc },
+      set:function(v){ ++this._abc }
     });
     
     obj.abc; // 0
@@ -67,10 +67,10 @@ Defines a property with possibility to change getter and/or setter.
       get: function(v){
         if(v == 12) return 100;
       },
-      set: function(v,val){
-        // v - new value, val - old value
+      set: function(new,old){
+        // new - new value, old - old value
         // if the setter returns a value, it is set variable.
-        if(v == 10 && val == 20) return 0;
+        if(new == 10 && old == 20) return 0;
       }
     });
     
@@ -82,5 +82,5 @@ Defines a property with possibility to change getter and/or setter.
     
     // setter
     obj.abc = 20;
-    obj.abc = 10;  // v == 10 && val == 20
+    obj.abc = 10;  // new == 10 && old == 20
     obj.abc;       // 0, value intercepted by setter
