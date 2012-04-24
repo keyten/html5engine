@@ -67,10 +67,10 @@ Defines a property with possibility to change getter and/or setter.
       get: function(v){
         if(v == 12) return 100;
       },
-      set: function(new,old){
+      set: function($new,old){
         // new - new value, old - old value
         // if the setter returns a value, it is set variable.
-        if(new == 10 && old == 20) return 0;
+        if($new == 10 && old == 20) return 0;
       }
     });
     
