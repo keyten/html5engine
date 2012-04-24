@@ -56,7 +56,7 @@
 			null
 		);
 	self.Accessors.has = function(obj, prop){
-		return !!((obj = self.Accessors.lookup(obj, prop)).get || obj.set);
+		return (obj = self.Accessors.lookup(obj,prop)) != null && (!!(obj.get || obj.set));
 	}
 	self.Accessors.inherit = function(from, to, prop){
 		from = self.Accessors.lookup(from, prop);
