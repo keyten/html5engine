@@ -2,8 +2,8 @@
 	module: Accessors
 	description: module for working with getters & setters
 	authors: Pavel Ponomarenko aka TheShock
-													and
-				Dmitriy Miroshnichenko aka Keyten
+			  and
+			 Dmitriy Miroshnichenko aka Keyten
 	ported from Atom.js (lookup, define, has, inherit functions)
 */
 (function(self,undefined){
@@ -70,10 +70,11 @@
 		var value = desc.value;
 		self.Accessors.define(obj, prop, {
 			get:function(){
-				return (desc.get && (desc.get(value) || value)) || value;
+				var t;
+				return desc.get ? ((t = desc.get(value)) === undefined ? value : t) : value;
 			},
 			set:function(v){
-				value = (desc.set && (desc.set(v,value) || v)) || v;
+				value = (desc.set ? ((value = desc.set(v,value)) === undefined ? v : value) : v);
 			}
 		});
 	}
