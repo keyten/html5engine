@@ -31,7 +31,7 @@
 		_[ data[0] ]();
 	}, false);
 
-	// self
+	// events
 	var events = {};
 	self.setEvent = function(evt,fn){
 		if(!(evt in events)) events[evt] = [];
@@ -52,5 +52,11 @@
 				evt[i] = function(){}
 			}
 		}
+	}
+
+	// modules
+	self.__moduleURL__ = 'modules';
+	self.require = function(module){
+		self.importScripts( self.__moduleURL__ + '/' + module + '.js' );
 	}
 })(self);
