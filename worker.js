@@ -1,4 +1,6 @@
 (function(self,undefined){
+	'use strict';
+	
 	// private
 	var msg = function(){
 		self.postMessage( Array.prototype.join.call(arguments,'|') );
@@ -6,6 +8,7 @@
 	var alert = function(abc){
 		msg('h5e', 'call', 'alert', escape(abc));
 	}
+	var data_listeners = {};
 	self.addEventListener('message', function(e){
 		var data = e.data.split('|');
 		var _ = {
@@ -26,6 +29,9 @@
 					charCode	: data[10],
 					which		: data[11]
 				});
+			},
+			data:function(){
+				if(data_listeners[ data[1] ]) data_listeners[ data[1] ].apply(self, data.slice(2));
 			}
 		};
 		_[ data[0] ]();

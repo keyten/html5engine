@@ -4,6 +4,7 @@
 	authors: Dmitriy Miroshnichenko aka Keyten
 */
 (function(self,undefined){
+	'use strict';
 	self.require('Accessors');
 
 	self.ctx = self.context = {};
@@ -111,6 +112,6 @@
 		msg( 'ctx', 'set', k, v );
 	}
 	function call(n,v){
-		msg.apply( null, ['ctx', 'call', n].concat(v || [])  );
+		msg.apply( 0, ['ctx', 'call', n].concat(v || [])  );
 	}
 })(self);

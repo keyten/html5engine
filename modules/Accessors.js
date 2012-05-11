@@ -7,6 +7,7 @@
 	ported from Atom.js (lookup, define, has, inherit functions)
 */
 (function(self,undefined){
+	'use strict';
 	self.Accessors = {};
 	self.Accessors.support = Object.getOwnPropertyDescriptor ? 'standart' : {}.__defineGetter__ ? 'no-standart' : 'no-support';
 	self.Accessors.lookup =
