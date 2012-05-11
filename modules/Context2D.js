@@ -55,7 +55,47 @@
 		},
 		clearRect:function(x,y,w,h){
 			call( 'clearRect', [ x, y, w, h ] );
-		}
+		},
+
+		// paths
+		beginPath:function(){
+			call( 'beginPath' );
+		},
+		moveTo:function(x,y){
+			call( 'moveTo', [ x, y ] );
+		},
+		lineTo:function(x,y){
+			call( 'lineTo', [ x, y ] );
+		},
+		quadraticCurveTo:function(cx1,cy1,x,y){
+			call( 'quadraticCurveTo', [ cx1, cy1, x, y ] );
+		},
+		bezierCurveTo:function(cx1,cy1,cx2,cy2,x,y){
+			call( 'bezierCurveTo', [ cx1, cy1, cx2, cy2, x, y ] );
+		},
+		arc:function(x,y,r,start,end,clock){
+			call( 'arc', [ x, y, r, start, end, clock ] );
+		},
+		arcTo:function(x1,y1,x2,y2,r){
+			call( 'arcTo', [ x1, y1, x2, y2, r ] );
+		},
+		rect:function(x,y,w,h){
+			call( 'rect', [ x, y, w, h ] );
+		},
+		closePath:function(){
+			call( 'closePath' );
+		},
+
+		fill:function(){
+			call( 'fill' );
+		},
+		stroke:function(){
+			call( 'stroke' );
+		},
+		clip:function(){
+			call( 'clip' );
+		},
+
 
 	};
 
