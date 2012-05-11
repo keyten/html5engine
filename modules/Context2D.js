@@ -97,7 +97,13 @@
 			call( 'clip' );
 		},
 
-
+		isPointInPath:function(x,y,fn){
+			msg( 'h5e.ctx', 'call', 'isPointInPath', x, y );
+			self.__data_listeners__.isPointInPath = function(is){
+				fn( is == 'false' ? false : true );
+				delete self.__data_listeners__.isPointInPath;
+			}
+		}
 	};
 
 	for(var i in methods){
