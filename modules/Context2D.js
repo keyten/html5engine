@@ -44,11 +44,33 @@
 		})(i);
 	}
 
+	var methods = {
+
+		// rects
+		fillRect:function(x,y,w,h){
+			call( 'fillRect', [ x, y, w, h ] );
+		},
+		strokeRect:function(x,y,w,h){
+			call( 'strokeRect', [ x, y, w, h ] );
+		},
+		clearRect:function(x,y,w,h){
+			call( 'clearRect', [ x, y, w, h ] );
+		}
+
+	};
+
+	for(var i in methods){
+		self.ctx[i] = methods[i];
+	}
+
 	// Utilities
 	function msg(){
 		self.postMessage( Array.prototype.slice.call(arguments,0).join('|') );
 	}
 	function set(k,v){
 		msg( 'ctx', 'set', k, v );
+	}
+	function call(n,v){
+		msg.apply( null, ['ctx', 'call', n].concat(v || [])  );
 	}
 })(self);
