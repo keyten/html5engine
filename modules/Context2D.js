@@ -9,7 +9,7 @@
 
 	self.ctx = self.context = {};
 
-	var i = 0;
+	var index = 0;
 	var parameters = {
 		lineWidth:1,
 		lineJoin:'miter',
@@ -44,6 +44,34 @@
 			});
 		})(i);
 	}
+
+	Accessors.define(self.ctx, 'fillStyle', {
+		get:function(i){
+			return parameters[i];
+		},
+		set:function(s){
+			if(s instanceof grad)
+				msg( 'h5e.ctx', 'call', 'setFill', s.index );
+			else
+				set( 'fillStyle', s );
+
+			parameters.fillStyle = s;
+		}
+	});
+	Accessors.define(self.ctx, 'strokeStyle', {
+		get:function(i){
+			return parameters[i];
+		},
+		set:function(s){
+			if(s instanceof grad)
+				msg( 'h5e.ctx', 'call', 'setStroke', s.index );
+			else
+				set( 'strokeStyle', s );
+			
+			parameters.strokeStyle = s;
+		}
+	});
+
 
 	var methods = {
 
@@ -103,7 +131,13 @@
 				fn( is == 'false' ? false : true );
 				delete self.__data_listeners__.isPointInPath;
 			}
-		}
+		},
+
+		// gradients
+		createLinearGradient:function(x1,y1,x2,y2){
+			msg( 'h5e.ctx', 'call', 'createLinearGradient', index, x1, y1, x2, y2  );
+			return new grad;
+		},
 	};
 
 	for(var i in methods){
@@ -120,4 +154,14 @@
 	function call(n,v){
 		msg.apply( 0, ['ctx', 'call', n].concat(v || [])  );
 	}
+
+	function grad(){
+		this.index = index++;
+	}
+	grad.prototype = {
+		addColorStop:function(step,color){
+			msg( 'h5e.ctx', 'call', 'addColorStop', this.index, step, color );
+		},
+		toString:function(){ return '[object CanvasGradient]' }
+	};
 })(self);

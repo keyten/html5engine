@@ -78,7 +78,25 @@
 			alert:function(abc){ alert(unescape(abc)) }
 		},
 		ctx:{
-			
+			createLinearGradient:function(i,x1,y1,x2,y2){
+				this.objects || (this.objects = []);
+				
+				this.objects[i] = this.context2d.createLinearGradient(x1,y1,x2,y2);
+			},
+			addColorStop:function(i,step,color){
+				this.objects[i].addColorStop(step, color);
+			},
+
+			setFill:function(i){
+				this.context2d.fillStyle = this.objects[i];
+			},
+			setStroke:function(i){
+				this.context2d.strokeStyle = this.objects[i];
+			},
+
+			isPointInPath:function(x,y){
+				this.worker.postMessage('data|isPointInPath|' + this.context2d.isPointInPath(x,y) );
+			}
 		}
 	};
 
