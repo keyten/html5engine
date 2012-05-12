@@ -138,6 +138,10 @@
 			msg( 'h5e.ctx', 'call', 'createLinearGradient', index, x1, y1, x2, y2  );
 			return new grad;
 		},
+		createRadialGradient:function(x1,y1,r1,x2,y2,r2){
+			msg( 'h5e.ctx', 'call', 'createRadialGradient', index, x1, y1, r1, x2, y2, r2 );
+			return new grad;
+		}
 	};
 
 	for(var i in methods){

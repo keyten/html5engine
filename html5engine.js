@@ -83,6 +83,11 @@
 				
 				this.objects[i] = this.context2d.createLinearGradient(x1,y1,x2,y2);
 			},
+			createRadialGradient:function(i,x1,y1,r1,x2,y2,r2){
+				this.objects || (this.objects = []);
+
+				this.objects[i] = this.context2d.createRadialGradient(x1,y1,r1,x2,y2,r2);
+			},
 			addColorStop:function(i,step,color){
 				this.objects[i].addColorStop(step, color);
 			},
