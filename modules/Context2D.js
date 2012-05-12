@@ -141,6 +141,23 @@
 		createRadialGradient:function(x1,y1,r1,x2,y2,r2){
 			msg( 'h5e.ctx', 'call', 'createRadialGradient', index, x1, y1, r1, x2, y2, r2 );
 			return new grad;
+		},
+
+		// transforms
+		translate:function(x,y){
+			call( 'translate', [ x, y ] );
+		},
+		rotate:function(angle){
+			call( 'rotate', [ angle ] );
+		},
+		scale:function(x,y){
+			call( 'scale', [ x, y ] );
+		},
+		transform:function(m11,m12,m21,m22,x,y){
+			call( 'transform', [ m11, m12, m21, m22, x, y ] );
+		},
+		setTransform:function(m11,m12,m21,m22,x,y){
+			call( 'setTransform', [ m11, m12, m21, m22, x, y ] );
 		}
 	};
 
