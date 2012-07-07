@@ -1,7 +1,7 @@
 # Accessors
 Module for working with getters & setters.
 
-## Accessors.lookup(obj, key)
+### Accessors.lookup(obj, key)
 Receives and returns a getter and setter functions, if they are defined.
 
     var obj = {
@@ -21,7 +21,7 @@ Receives and returns a getter and setter functions, if they are defined.
       ++this._abc;
     } } */
 
-## Accessors.define(obj, key, desc)
+### Accessors.define(obj, key, desc)
 Defines getter & setter.
 
     var obj = { _abc:0 };
@@ -35,7 +35,7 @@ Defines getter & setter.
     obj.abc = 10;
     obj.abc; // 1
 
-## Accessors.has(obj, key)
+### Accessors.has(obj, key)
 Returns true if the object has a getter or setter.
 
     var obj = {
@@ -45,7 +45,7 @@ Returns true if the object has a getter or setter.
     Accessors.has(obj, 'abc'); // true
     Accessors.has(obj, 'xxx'); // false
 
-## Accessors.inherit(from, to, key)
+### Accessors.inherit(from, to, key)
 Transfers getter and setter from one object to another.
 
     var obj = {
@@ -57,7 +57,7 @@ Transfers getter and setter from one object to another.
     
     foo.abc; // returns random number
 
-## Accessors.property(obj, key, desc)
+### Accessors.property(obj, key, desc)
 Defines a property with possibility to change getter and/or setter.
 
     var obj = {};
