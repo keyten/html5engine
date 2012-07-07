@@ -9,6 +9,10 @@
 	self.Keyboard = {};
 	self.Keyboard.key = null;
 	self.Keyboard.keyCode = null;
+	self.Keyboard.modifiers = { ctrl:false, shift:false, alt:false, meta:false };
+	self.Keyboard.lastKey = null;
+	self.Keyboard.lastKeyCode = null;
+	self.Keyboard.lastModifiers = { ctrl:false, shift:false, alt:false, meta:false };
 
 	self.Keyboard.special = {
 
@@ -134,7 +138,7 @@
 
 	self.setEvent('keypress', function(e){ self.Keyboard.fire(e,'press') });
 	self.setEvent('keydown', function(e){ setKey(e); self.Keyboard.fire(e,'down') });
-	self.setEvent('keyup', function(e){ self.Keyboard.fire(e,'up'); self.Keyboard.key = self.Keyboard.keyCode = null });
+	self.setEvent('keyup', function(e){ self.Keyboard.fire(e,'up'); self.Keyboard.key = self.Keyboard.keyCode = null; self.Keyboard.modifiers = { ctrl:false, shift:false, alt:false, meta:false } });
 
 
 
@@ -159,15 +163,17 @@
 
 	function setKey(e){
 
-		self.Keyboard.keyCode = e.which;
+		self.Keyboard.keyCode = self.Keyboard.lastKeyCode = e.which;
+		self.Keyboard.modifiers = self.Keyboard.lastModifiers = { ctrl: e.ctrlKey, shift: e.shiftKey, alt: e.altKey, meta: e.metaKey };
+
 		for(var i in self.Keyboard.special){
 
 			if(e.which == self.Keyboard.special[i])
-				return self.Keyboard.key = i;
+				return self.Keyboard.key = self.Keyboard.lastKey = i;
 
 		}
 
-		self.Keyboard.key = String.fromCharCode(e.which);
+		self.Keyboard.key = self.Keyboard.lastKey = String.fromCharCode(e.which);
 
 	}
 
